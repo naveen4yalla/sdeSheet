@@ -1,0 +1,12 @@
+[{
+	"resource": "/Users/naveenyalla/Dropbox/Sdesheet/minimumNumberOFplatforms.cpp",
+	"owner": "C/C++",
+	"code": "1696",
+	"severity": 8,
+	"message": "#include errors detected. Please update your includePath. Squiggles are disabled for this translation unit (/Users/naveenyalla/Dropbox/Sdesheet/minimumNumberOFplatforms.cpp).",
+	"source": "C/C++",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 24
+}]

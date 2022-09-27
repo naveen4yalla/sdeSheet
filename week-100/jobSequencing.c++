@@ -45,7 +45,7 @@ int main()
 {
     int n = 4;
 
-   job arr[n] = {{1,4,20},{2,1,10},{3,2,40},{4,2,30}};
+   job arr[4] = {{1,4,20},{2,1,10},{3,2,40},{4,2,30}};
     Solution obj;
     pair <int,int> ans = obj.jobScheduling(arr,n);
     cout << ans.first << " " << ans.second << endl;

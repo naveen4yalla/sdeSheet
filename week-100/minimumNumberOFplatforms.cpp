@@ -8,7 +8,7 @@ int countPlatforms(int n,int arr[],int dep[])
     while(i<n && j<n){
         if(arr[i]<=dep[j]){
             count++;
-            i+=;
+            i++;
         }
         else{
             count--;
