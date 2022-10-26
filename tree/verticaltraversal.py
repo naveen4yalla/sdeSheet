@@ -21,6 +21,7 @@ def verticalTraversals(root):
     bfsnodes.sort()
     #print(bfsnodes)
     ret = OrderedDict()
+    
     for column, row, value in bfsnodes:
         if column in ret:
             ret[column].append(value)
