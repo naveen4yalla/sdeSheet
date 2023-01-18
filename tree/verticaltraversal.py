@@ -27,6 +27,7 @@ def verticalTraversals(root):
             ret[column].append(value)
         else:
             ret[column] = [value]
+    print(ret)
     return ret.values()
 
 
