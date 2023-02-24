@@ -12,8 +12,8 @@ class Solution:
         stackMember[i] = True
         st.append(i)
         for j in self.graph[i]:
-            if timeOfInsertion[i] == -1:
-                self.stronglyConnectedComponentsUtil(timeOfInsertion,timeOfInsertion,lowInsertion,stackMember,i, st)
+            if timeOfInsertion[j] == -1:
+                self.stronglyConnectedComponentsUtil(timeOfInsertion,lowInsertion,stackMember,j, st)
                 lowInsertion[i] = min(lowInsertion[i], lowInsertion[j])
             elif stackMember[j]== True:
                 lowInsertion[i] = min(lowInsertion[i],lowInsertion[j])
@@ -27,13 +27,13 @@ class Solution:
 
             print()
     def stronglyConnectedComponents(self):
-        timeOfInsertion = [-1] * len(self.graph)
-        lowInsertion = [-1] * len(self.graph)
-        stackMember = [False] * len(self.graph)
+        timeOfInsertion = [-1] * 5
+        lowInsertion = [-1] * 5
+        stackMember = [False] * 5
         st = []
-        for i in self.graph:
-            if timeOfInsertion[i] != -1:
-                self.stronglyConnectedComponents(timeOfInsertion,lowInsertion,stackMember,i, st )
+        for i in range(5):
+            if timeOfInsertion[i] == -1:
+                self.stronglyConnectedComponentsUtil(timeOfInsertion,lowInsertion,stackMember,i, st )
         
 g1 = Solution()
 g1.addEdge(1, 0)
