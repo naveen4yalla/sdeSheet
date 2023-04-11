@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    #Two pointer technique
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         if head is None:
             return None
