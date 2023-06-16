@@ -4,6 +4,7 @@ class Solution:
         while l < r:
             sum = numbers[l] + numbers[r]
             if sum == target:
+                #its one based indexing so adding one on left and right
                 return [l + 1, r + 1]
             if sum < target:
                 l += 1
