@@ -1,11 +1,22 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        dp = [0] * (n+1)
-        result = [0]
-        offset  = 1
-        for f in range(1,n+1):
-            if offset * 2 == f:
-                offset = f
-            dp[f] =  1 + dp[f-offset]
-        return dp
         
+        mem = [0]*(n+1)
+        
+        if n == 0:
+            return mem
+        
+        mem[0] = 0
+        mem[1] = 1
+
+        for i in range(2,n+1):
+            
+            if i%2 == 0:
+                mem[i] = mem[i//2]
+            
+            else:
+                mem[i] = mem[i//2] + 1
+                
+        
+        return mem
+		
