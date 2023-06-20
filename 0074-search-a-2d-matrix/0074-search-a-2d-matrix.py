@@ -1,5 +1,5 @@
 class Solution:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    def searchMatrix(self, matrix, target):
         rows, cols = len(matrix), len(matrix[0])
         top, bottom = 0, rows - 1
 
@@ -16,7 +16,7 @@ class Solution:
             return False
 
         left, right = 0, cols - 1
-        row = (top + bottom) // 2
+        #row = (top + bottom) // 2
 
         while left <= right:
             mid = (left + right) // 2
