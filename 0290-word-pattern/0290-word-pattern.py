@@ -7,7 +7,7 @@ class Solution:
             return False
         
         for i in range(len(s)):
-            char_key =   'c'+pattern[i]
+            char_key =   'ch'+pattern[i]
             char_word =  'w'+s[i]
             
             
