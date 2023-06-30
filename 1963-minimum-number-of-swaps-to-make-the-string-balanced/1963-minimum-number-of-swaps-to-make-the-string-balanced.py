@@ -1,15 +1,17 @@
 class Solution:
-    def minSwaps(self, s):
-        #create a stack 
-        #Dont need to consider about the balnced parenthesis in the string
-        #reduce coutn if balanced parthensis is found 
-        count = 0
-        for f in s :
-            if f == "[":
-                count = count + 1
-            elif count!=0:
-                count = count -1
-        return (count+1)//2
-        
-            
-        
+    def minSwaps(self, s: str) -> int:
+        fixes_applied = 0
+        current_open = 0
+
+        for c in s:
+            if c == '[':            # Open is always considered OK
+                current_open += 1
+
+            elif current_open > 0:  # Valid Closings are OK
+                current_open -= 1
+                
+            else:                   # Invalid Closings Require a Fix
+                fixes_applied += 1
+                current_open += 1
+
+        return fixes_applied
