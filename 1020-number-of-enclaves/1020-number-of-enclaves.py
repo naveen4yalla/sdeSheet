@@ -13,6 +13,7 @@ class Solution:
             for x,y in [(0,-1), (0,1), (-1,0), (1,0)]:
                 dfs(i+x, j+y, isBoundary)
         visited = set()
+        #Check all the boundaries 
         for j in range(n):
             if grid[0][j] == 1:
                 dfs(0,j,True)
