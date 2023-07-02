@@ -30,7 +30,7 @@ class Solution:
             node, color, distance = queue.popleft()
             
             # Update result if the node is unvisited or a shorter path is found
-            if result[node] == -1:
+            if result[node] == -1 or result[node]>distance:
                 result[node] = distance
                 
             if color!='red':
