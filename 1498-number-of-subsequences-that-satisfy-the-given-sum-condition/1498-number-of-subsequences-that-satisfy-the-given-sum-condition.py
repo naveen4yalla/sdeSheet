@@ -8,7 +8,7 @@ class Solution:
 
         while left <= right:
             if nums[left] + nums[right] <= target:
-                answer = (answer + pow(2, right - left)) % mod
+                answer = (answer + pow(2, right - left,mod)) % mod
                 left += 1
             else:
                 right -= 1
