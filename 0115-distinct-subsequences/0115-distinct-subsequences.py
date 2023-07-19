@@ -1,20 +1,29 @@
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        m, n = len(s), len(t)
-        
-        # Create a 2D DP table
-        dp = [[0] * (n + 1) for _ in range(m + 1)]
-        
-        # Initialize the base cases
-        for i in range(m + 1):
-            dp[i][n] = 1
-        
-        # Fill the DP table bottom-up
-        for i in range(m - 1, -1, -1):
-            for j in range(n - 1, -1, -1):
-                dp[i][j] = dp[i + 1][j]  # Consider excluding current character
-                
+        cache = {}
+
+        for i in range(len(s) + 1):
+            cache[(i, len(t))] = 1
+        for j in range(len(t)):
+            cache[(len(s), j)] = 0
+
+        for i in range(len(s) - 1, -1, -1):
+            for j in range(len(t) - 1, -1, -1):
                 if s[i] == t[j]:
-                    dp[i][j] += dp[i + 1][j + 1]  # Consider including current character
-        
-        return dp[0][0]
+                    cache[(i, j)] = cache[(i + 1, j + 1)] + cache[(i + 1, j)]
+                else:
+                    cache[(i, j)] = cache[(i + 1, j)]
+        return cache[(0, 0)]
+
+
+
+
+
+
+
+
+
+
+
+
+
