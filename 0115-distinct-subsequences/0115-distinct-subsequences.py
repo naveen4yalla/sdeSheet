@@ -1,23 +1,20 @@
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        cache = {}
+        m, n = len(s), len(t)
         
-        def backtrack(i: int, j: int) -> int:
-            if j == len(t):
-                return 1
-            if i >= len(s):
-                return 0
-            if (i, j) in cache:
-                return cache[(i, j)]
-            
-            count = 0
-            if s[i] == t[j]:
-                count += backtrack(i + 1, j + 1)
-            
-            count += backtrack(i + 1, j)
-            
-            cache[(i, j)] = count
-            
-            return count
+        # Create a 2D DP table
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
         
-        return backtrack(0, 0)
+        # Initialize the base cases
+        for i in range(m + 1):
+            dp[i][n] = 1
+        
+        # Fill the DP table bottom-up
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                dp[i][j] = dp[i + 1][j]  # Consider excluding current character
+                
+                if s[i] == t[j]:
+                    dp[i][j] += dp[i + 1][j + 1]  # Consider including current character
+        
+        return dp[0][0]
