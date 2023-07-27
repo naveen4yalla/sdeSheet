@@ -20,7 +20,7 @@ from functools import lru_cache
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         # minor optimization
-        # nums.sort()
+        nums.sort()
         dp = [0 for i in range(target+1)]
         dp[0] = 1
 
@@ -29,8 +29,7 @@ class Solution:
             for num in nums:
                 if comb_sum - num >= 0:
                     dp[comb_sum] += dp[comb_sum-num]
-                # minor optimization, early stopping.
-                # else:
-                #    break
+                else:
+                    break
         return dp[target]
     
