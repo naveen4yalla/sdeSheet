@@ -41,7 +41,7 @@ class Solution:
             # Base cases
             if subset_sum == 0:
                 return True
-            if n == 0 or subset_sum < 0:
+            if n <=-1 or subset_sum < 0:
                 return False
             result = (dfs(nums, n - 1, subset_sum - nums[n])
                     or dfs(nums, n - 1, subset_sum))
