@@ -1,34 +1,32 @@
+from collections import defaultdict
+
 class Solution:
-    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+    def eventualSafeNodes(self, graph):
         n = len(graph)
         indegree = [0] * n
-        adj = [[] for _ in range(n)]
-
-        for i in range(n):
-            for node in graph[i]:
-                adj[node].append(i)
+        tempGraph = defaultdict(list)
+        
+        for i, neighbors in enumerate(graph):
+            for j in neighbors:
+                tempGraph[j].append(i)
                 indegree[i] += 1
-
-        q = deque()
-        # Push all the nodes with indegree zero in the queue.
+        
+        queue = []
         for i in range(n):
             if indegree[i] == 0:
-                q.append(i)
-
-        safe = [False] * n
-        while q:
-            node = q.popleft()
-            safe[node] = True
-
-            for neighbor in adj[node]:
-                # Delete the edge "node -> neighbor".
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    q.append(neighbor)
-
-        safeNodes = []
-        for i in range(n):
-            if safe[i]:
-                safeNodes.append(i)
-
-        return safeNodes
+                queue.append(i)
+        
+        safeNode = [False] * n
+        while queue:
+            popElement = queue.pop(0)
+            safeNode[popElement] = True
+            for n in tempGraph[popElement]:
+                indegree[n] -= 1
+                if indegree[n] == 0:
+                    queue.append(n)
+        
+        result = []
+        for i in range(len(graph)):
+            if safeNode[i]:
+                result.append(i)
+        return result
