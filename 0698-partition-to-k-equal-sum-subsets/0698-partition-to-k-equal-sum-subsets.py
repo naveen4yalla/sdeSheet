@@ -1,47 +1,42 @@
-# class Solution:
-#     def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-#         nums.sort(reverse=True)
-#         total = sum(nums) / k
-#         visited = set()
-        
+class Solution(object):
+    def canPartitionKSubsets(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
 
-#         def backTrack(i, count, value):
-#             if k == count:
-#                 return True
-#             if value == total:
-#                 return backTrack(0, count + 1, 0)
-#             for j in range(i, len(nums)):
-#                 if j != 0 and (j-1) not in visited and nums[j - 1] == nums[j]:
-#                     continue
-#                 if j in visited or nums[j] + value > total:
-#                     continue
-#                 visited.add(j)
-#                 if backTrack(j + 1, k, value + nums[j]):
-#                     return True
-#                 visited.remove(j)
-#             return False
-
-#         return backTrack(0, 0, 0)
-class Solution:
-    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        nums.sort(reverse=True)
-        total = sum(nums) / k
-        visited = set()
-
-        def backTrack(i, count, value):
-            if count == k:
-                return True
-            if value == total:
-                return backTrack(0, count + 1, 0)
-            for j in range(i, len(nums)):
-                if j != i and nums[j - 1] == nums[j] and j - 1 not in visited:
-                    continue
-                if j in visited or nums[j] + value > total:
-                    continue
-                visited.add(j)
-                if backTrack(j + 1, count, value + nums[j]):
-                    return True
-                visited.remove(j)
+        if sum(nums) % k != 0:
             return False
 
-        return backTrack(0, 0, 0)
+        nums.sort(reverse = True)
+        target = sum(nums) / k
+        visited= set()
+
+        def backtrack(idx, count, currSum):
+            if count == k:
+                return True
+
+            if target == currSum:
+                return backtrack(0, count + 1, 0)
+
+            for i in range(idx, len(nums)):
+                
+                # skip duplicates if last same number was skipped
+                if i > 0 and (i - 1) not in visited and nums[i] == nums[i - 1]:
+                    continue
+
+                if i in visited or currSum + nums[i] > target:
+                    continue
+
+                visited.add(i)
+
+                if backtrack(i + 1, count, currSum + nums[i]):
+                    return True
+                
+                visited.remove(i)
+
+            return False
+
+
+        return backtrack(0, 0, 0)
